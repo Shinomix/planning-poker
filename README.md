@@ -1,6 +1,13 @@
 # planning-poker
 > Create tasks, estimate them with your coworkers and visualize results in real-time
 
+   * [About](#about)
+   * [Product perspective](#product-perspective)
+   * [Technical perspective](#technical-perspective)
+      * [System architecture](#system-architecture)
+      * [Getting started](#getting-started)
+      * [Troubleshooting](#troubleshooting)
+
 ## About
 In order to estimate how complex a task is for a team of developers to complete, a common technique that is used is called ["planning poker"](https://en.wikipedia.org/wiki/Planning_poker).
 
@@ -34,3 +41,8 @@ That being, the following definitions represents the core domain of the planning
 - **Vote**: Object that holds the choice of a specific user made for a specific task. A vote can be updated at any point in time. Its value belongs to a pre-defined set of values.
 
 ![Domain Design](doc/assets/domain_design.png)
+
+## Technical perspective
+### System architecture
+### Getting started
+### Troubleshooting
