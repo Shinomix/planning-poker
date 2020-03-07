@@ -1,6 +1,7 @@
 import {
   has,
   push,
+  find,
   clear
 } from "../../../infrastructure/repositories/taskRepository";
 import { Task } from "../../../domain/aggregates/task";
@@ -54,9 +55,40 @@ describe("task repository", () => {
         expect(first_addition.votes.length).toEqual(0);
 
         task.votes.push({ user, value: 1 });
-        const result = push(task);
+      });
+    });
+  });
 
-        expect(result.votes.length).toEqual(1);
+  describe("'find' method", () => {
+    describe("when no task is not persisted", () => {
+      it("is undefined", () => {
+        const result = find(task.id.id);
+
+        expect(result).toBeUndefined();
+      });
+    });
+
+    describe("when no task is not persisted", () => {
+      beforeEach(() => {
+        push(task);
+      });
+
+      it("is undefined", () => {
+        const result = find("something_else");
+
+        expect(result).toBeUndefined();
+      });
+    });
+
+    describe("when the task is already persisted", () => {
+      beforeEach(() => {
+        push(task);
+      });
+
+      it("returns the task", () => {
+        const result = find(task.id.id);
+
+        expect(result).toEqual(task);
       });
     });
   });

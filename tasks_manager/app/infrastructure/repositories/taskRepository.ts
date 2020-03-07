@@ -15,9 +15,13 @@ const push = (task: Task): Task => {
   return store[task.id.id];
 };
 
+const find = (taskId: string): Task | undefined => {
+  return store[taskId];
+};
+
 // for testing purpose we need to clear the store at each spec
 const clear = (): void => {
   store = {};
 };
 
-export { has, push, clear };
+export { has, push, find, clear };
