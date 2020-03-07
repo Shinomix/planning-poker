@@ -8,9 +8,9 @@ const createTaskFn = (commit: Function) => {
 
   const task = createTask(taskId);
 
-  commit(task)
+  commit(task);
 
-  return task
+  return task;
 };
 
 export { createTaskFn as createTask };

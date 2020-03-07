@@ -10,9 +10,9 @@ const computeResult = (task: Task): TaskResult => {
   const results: TaskResult = new Map();
 
   voteValues.forEach((value: VoteValue) => {
-    let currentValue: number | undefined = results.get(value);
+    const currentValue: number | undefined = results.get(value);
 
-    results.set(value, !!currentValue ? currentValue + 1 : 1);
+    results.set(value, currentValue ? currentValue + 1 : 1);
   });
 
   return results;
