@@ -45,4 +45,29 @@ That being, the following definitions represents the core domain of the planning
 ## Technical perspective
 ### System architecture
 ### Getting started
+#### Tasks manager (server)
+This project runs with Yarn. Take a look at the official Yarn [documentation](https://classic.yarnpkg.com/en/docs/install/#mac-stable) to install it.
+
+The tasks manager runs with Node.js **12.4+** version and is developed with **ECMAScript 2018** as the main target (you can take a look [here](https://node.green/) for more information on the support of ECMAScript in Node.js). To manage your Node.js version, please use [NVM](https://github.com/nvm-sh/nvm). It can be installed with Homebrew without any problems thanks to this [formulae](https://formulae.brew.sh/formula/nvm). When NVM is installed on your environment, install the last Node.js **LTS** with the following command:
+
+```
+$ nvm install --lts
+```
+
+Then set the default version that will be used by NVM with the following command (replace **{node-version}** with the version you have installed):
+
+```
+$ nvm alias default {node-version}
+```
+
+To install project dependencies, use the following command:
+```
+$ yarn
+```
+
+After that, you can start the project with the start script:
+```
+$ yarn start
+```
+
 ### Troubleshooting
