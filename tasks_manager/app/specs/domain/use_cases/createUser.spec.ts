@@ -3,26 +3,26 @@ import { Task } from "../../../domain/aggregates/task";
 import { createTask } from "../../../domain/aggregates/createTask";
 
 describe("'createUser' use case", () => {
-  const persistFn = jest.fn();
+  const commitFn = jest.fn();
   let task: Task;
 
   beforeEach(() => {
-    task = createTask({ id: "1" }, persistFn);
+    task = createTask({ id: "1" });
 
-    persistFn.mockClear();
+    commitFn.mockClear();
   });
 
   describe("when there is no user for the task", () => {
     it("creates a first one", () => {
-      const result = createUser(task);
+      const result = createUser(task, commitFn);
 
       expect(result.users.length).toBe(1);
     });
 
     it("persists the changes", () => {
-      createUser(task);
+      createUser(task, commitFn);
 
-      expect(persistFn).toHaveBeenCalledTimes(1);
+      expect(commitFn).toHaveBeenCalledWith(task);
     });
   });
 
@@ -32,15 +32,15 @@ describe("'createUser' use case", () => {
     });
 
     it("adds a new one", () => {
-      const result = createUser(task);
+      const result = createUser(task, commitFn);
 
       expect(result.users.length).toBe(2);
     });
 
     it("persists the changes", () => {
-      createUser(task);
+      createUser(task, commitFn);
 
-      expect(persistFn).toHaveBeenCalledTimes(1);
+      expect(commitFn).toHaveBeenCalledWith(task);
     });
   });
 });

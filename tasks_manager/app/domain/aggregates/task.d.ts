@@ -6,8 +6,6 @@ interface Task {
   readonly id: TaskIdentifier;
   votes: Array<Vote>;
   users: Array<User>;
-
-  persist(): void;
 }
 
 export { Task };

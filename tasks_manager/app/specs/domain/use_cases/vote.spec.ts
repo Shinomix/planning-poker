@@ -5,30 +5,30 @@ import { User } from "../../../domain/entities/user";
 import { VoteValue } from "../../../domain/entities/voteValue";
 
 describe("'vote' use case", () => {
-  const persistFn = jest.fn();
+  const commitFn = jest.fn();
   const user: User = { id: "1" };
   let task: Task;
   let value: VoteValue;
 
   beforeEach(() => {
-    task = createTask({ id: "1" }, persistFn);
+    task = createTask({ id: "1" });
     value = 1;
 
-    persistFn.mockClear();
+    commitFn.mockClear();
   });
 
   describe("when user has not voted", () => {
     it("adds a new vote", () => {
-      const result = vote(task, user, value);
+      const result = vote(task, user, value, commitFn);
 
       expect(result.votes.length).toBe(value);
       expect(result.votes[0].user).toEqual(user);
     });
 
     it("persists the task changes", () => {
-      const result = vote(task, user, value);
+      const result = vote(task, user, value, commitFn);
 
-      expect(persistFn).toHaveBeenCalledTimes(1);
+      expect(commitFn).toHaveBeenCalledWith(task);
     });
   });
 
@@ -39,7 +39,7 @@ describe("'vote' use case", () => {
     });
 
     it("updates the existing votes", () => {
-      const result = vote(task, user, value);
+      const result = vote(task, user, value, commitFn);
 
       expect(result.votes.length).toBe(1);
       expect(result.votes[0].value).toEqual(value);

@@ -1,12 +1,11 @@
 import { Task } from "./task";
 import { TaskIdentifier } from "../entities/taskIdentifier";
 
-const createTask = (id: TaskIdentifier, persistFn: any): Task => {
+const createTask = (id: TaskIdentifier): Task => {
   return {
     id,
     votes: [],
-    users: [],
-    persist: persistFn
+    users: []
   };
 };
 

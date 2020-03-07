@@ -3,7 +3,12 @@ import { User } from "../entities/user";
 import { Vote } from "../entities/vote";
 import { VoteValue } from "../entities/voteValue";
 
-const vote = (task: Task, user: User, value: VoteValue): Task => {
+const vote = (
+  task: Task,
+  user: User,
+  value: VoteValue,
+  commit: Function
+): Task => {
   const existingVote: Vote | undefined = task.votes.find(
     (vote: Vote) => vote.user === user
   );
@@ -16,7 +21,7 @@ const vote = (task: Task, user: User, value: VoteValue): Task => {
     existingVote.value = value;
   }
 
-  task.persist();
+  commit(task);
 
   return task;
 };
