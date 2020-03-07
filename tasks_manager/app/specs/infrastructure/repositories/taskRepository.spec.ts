@@ -37,7 +37,7 @@ describe("task repository", () => {
   });
 
   describe("'push' method", () => {
-    describe("when user is not persisted yet", () => {
+    describe("when the task is not persisted yet", () => {
       it("persists it", () => {
         const result = push(task);
 
@@ -46,7 +46,7 @@ describe("task repository", () => {
       });
     });
 
-    describe("when the user is already persisted", () => {
+    describe("when the task is already persisted", () => {
       const user: User = { id: "1" };
 
       it("updates it", () => {
