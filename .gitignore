@@ -1,1 +1,5 @@
 .DS_Store
+yarn-debug.log*
+yarn-error.log*
+node_modules/
+.eslintcache
