@@ -1,10 +1,3 @@
-import { createServer } from "http";
+import { initHTTPcontrollers } from "./infrastructure/controllers";
 
-(async () => {
-  const server = createServer((req, res) => {
-    res.write("Hello World");
-    res.end();
-  });
-
-  server.listen(3000);
-})();
+initHTTPcontrollers();

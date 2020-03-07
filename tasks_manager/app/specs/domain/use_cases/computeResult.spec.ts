@@ -13,7 +13,7 @@ describe("'computeResult' use case", () => {
   const second_value: VoteValue = 13;
 
   beforeEach(() => {
-    task = createTask({ id: "1" }, () => {});
+    task = createTask({ id: "1" });
   });
 
   describe("when there is no vote", () => {
