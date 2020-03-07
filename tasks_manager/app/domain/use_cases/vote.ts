@@ -2,13 +2,20 @@ import { Task } from "../aggregates/task";
 import { User } from "../entities/user";
 import { Vote } from "../entities/vote";
 import { VoteValue } from "../entities/voteValue";
+import { TaskNotFound } from "./errors";
 
 const vote = (
-  task: Task,
+  taskId: string,
   user: User,
   value: VoteValue,
-  commit: Function
+  commit: Function,
+  find: Function
 ): Task => {
+  const task: Task | undefined = find(taskId);
+  if (!task) {
+    throw new TaskNotFound();
+  }
+
   const existingVote: Vote | undefined = task.votes.find(
     (vote: Vote) => vote.user === user
   );
