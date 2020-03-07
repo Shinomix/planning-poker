@@ -8,7 +8,7 @@ import { createTask } from "../../../domain/use_cases/createTask";
 import { User } from "../../../domain/entities/user";
 
 describe("task repository", () => {
-  let task: Task = createTask();
+  let task: Task = createTask(() => {});
 
   beforeEach(() => {
     clear();
