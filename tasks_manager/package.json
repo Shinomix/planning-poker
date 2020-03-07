@@ -11,7 +11,10 @@
     "start:debug": "nodemon",
     "build": "rimraf dist && tsc -p tsconfig.json",
     "format": "prettier --write \"app/**/*.ts\"",
-    "lint": "eslint 'app/**/*.ts' --quiet --fix"
+    "lint": "eslint 'app/**/*.ts' --quiet --fix",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -25,16 +28,34 @@
   },
   "homepage": "https://github.com/Shinomix/planning-poker#readme",
   "dependencies": {
+    "@types/jest": "^25.1.4",
     "@types/node": "^13.9.0",
     "@typescript-eslint/eslint-plugin": "^2.22.0",
     "@typescript-eslint/parser": "^2.22.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.2",
+    "ts-jest": "^25.2.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
+  },
+  "jest": {
+    "coverageDirectory": "./coverage",
+    "testEnvironment": "node",
+    "rootDir": "app",
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "testMatch": [
+      "**/app/specs/**/*spec.+(ts)"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
   }
 }

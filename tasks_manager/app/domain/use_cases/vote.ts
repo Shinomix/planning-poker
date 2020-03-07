@@ -20,3 +20,5 @@ const vote = (task: Task, user: User, value: VoteValue): Task => {
 
   return task;
 };
+
+export { vote };
