@@ -1,0 +1,28 @@
+.create-task-button {
+  padding: 10px 50px;
+
+  background-color: #134dca;
+  border-radius: 15px;
+  border: 0;
+  outline: none;
+
+  font-size: 1.3em;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+}
+
+.create-task-button:hover {
+  background-color: #185ef3;
+}
+
+.create-task-button:active {
+  background-color: #0d3997;
+  outline: none;
+}
+
+.create-task-button:disabled,
+.create-task-button[disabled] {
+  background-color: #b4b4b4;
+  cursor: not-allowed;
+}

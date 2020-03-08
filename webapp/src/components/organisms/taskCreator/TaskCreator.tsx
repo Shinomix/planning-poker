@@ -35,26 +35,30 @@ export class TaskCreator extends React.Component<{}, TaskCreatorState> {
 
   render() {
     return (
-      <div>
-        <CreateTaskButton
-          onCreateTask={this.onCreateTask.bind(this)}
-          isDisabled={this.isButtonDisabled()}
-        />
+      <div className="task-creator">
         {this.state.taskId !== '' ? (
-          <div>
+          <div className="task-link">
             Your task has been created!
             <br />
-            Share{' '}
+            Share this{' '}
             <a
               href={`http://localhost:4000/task/${this.state.taskId}`}
               target="_blank"
               rel="noopener noreferrer"
             >
-              this link
+              link
             </a>{' '}
             to your colleagues to vote
           </div>
         ) : null}
+        <p className="task-creator-content">
+          Ease your planning poker sessions by creating new tasks, sharing them
+          with your colleagues and estimating them in real-time.
+        </p>
+        <CreateTaskButton
+          onCreateTask={this.onCreateTask.bind(this)}
+          isDisabled={this.isButtonDisabled()}
+        />
       </div>
     );
   }

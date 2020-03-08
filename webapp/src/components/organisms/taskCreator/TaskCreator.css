@@ -1,0 +1,35 @@
+.task-creator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 50px;
+
+  background-color: white;
+}
+
+.task-creator .task-creator-content {
+  max-width: 500px;
+  margin-bottom: 20px;
+
+  text-align: center;
+}
+
+.task-creator .task-link {
+  margin: 20px;
+  padding: 15px 100px;
+
+  border-radius: 3px;
+  background-color: #aed2bb;
+
+  color: #395042;
+  font-size: 1em;
+  font-weight: 300;
+  text-align: center;
+}
+
+.task-creator .task-link a {
+  color: #395042;
+  font-weight: 600;
+}

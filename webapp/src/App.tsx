@@ -11,16 +11,14 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main>
-        <BrowserRouter>
-          <div>
-            <Switch>
-              <Route path="/" component={TaskCreator} exact />
-              <Route path="/task/:id" component={Cards} />
-            </Switch>
-          </div>
-        </BrowserRouter>
-      </main>
+      <BrowserRouter>
+        <main>
+          <Switch>
+            <Route path="/" component={TaskCreator} exact />
+            <Route path="/task/:id" component={Cards} />
+          </Switch>
+        </main>
+      </BrowserRouter>
     </div>
   );
 }

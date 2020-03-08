@@ -13,10 +13,11 @@ export class CreateTaskButton extends React.Component<
   render() {
     return (
       <button
+        className="create-task-button"
         disabled={this.props.isDisabled}
         onClick={e => this.props.onCreateTask(e)}
       >
-        Create a task
+        Create a new task
       </button>
     );
   }
