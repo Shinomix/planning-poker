@@ -15,7 +15,7 @@ const createTask = async () => {
 
     return await rawResponse.json();
   } catch (e) {
-    console.log('API - createTask - An error occured', e);
+    console.warn('API - createTask - An error occured', e);
 
     return {};
   }
@@ -37,7 +37,7 @@ const createUser = async (taskId: string) => {
 
     return await rawResponse.json();
   } catch (e) {
-    console.log('API - createUser - An error occured', e);
+    console.warn('API - createUser - An error occured', e);
 
     return {};
   }
@@ -62,10 +62,24 @@ const vote = async (taskId: string, userId: string, value: number) => {
 
     return await rawResponse.json();
   } catch (e) {
-    console.log('API - createUser - An error occured', e);
+    console.warn('API - vote - An error occured', e);
 
     return {};
   }
 };
 
-export { createTask, createUser, vote };
+const getResult = async (taskId: string) => {
+  try {
+    const rawResponse = await fetch(
+      TASKS_MANAGER_URL + `/tasks/${taskId}/result`
+    );
+
+    return await rawResponse.json();
+  } catch (e) {
+    console.warn('API - getResult - An error occured', e);
+
+    return {};
+  }
+};
+
+export { createTask, createUser, vote, getResult };

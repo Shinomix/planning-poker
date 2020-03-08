@@ -1,15 +1,18 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { createUser, vote } from '../../../api';
+import { createUser, vote, getResult } from '../../../api';
 import { Card } from '../../molecules/card/Card';
 import { CardResult } from '../../molecules/cardResult/CardResult';
 
 import './Cards.css';
 
+interface TaskResult {
+  [key: number]: number;
+}
 export interface CardsState {
   taskId: string;
   userId: string;
-  results: Map<number, number>;
+  results: TaskResult;
+  pollingInterval: NodeJS.Timeout | null;
 }
 
 export class Cards extends React.Component<{}, CardsState> {
@@ -17,19 +20,51 @@ export class Cards extends React.Component<{}, CardsState> {
     super(props);
 
     this.state = {
-      results: new Map(),
+      results: {},
       taskId: this.getTaskId(window.location.href),
       userId: '',
+      pollingInterval: null,
     };
   }
 
   async componentDidMount() {
+    await this.createUser();
+    this.startResultPolling();
+  }
+
+  componentWillUnmount() {
+    this.stopResultPolling();
+  }
+
+  async createUser() {
     const result = await createUser(this.state.taskId);
     if (!result.user) {
       window.location.href = '/';
     }
 
     this.setState({ userId: result.user.id });
+  }
+
+  startResultPolling() {
+    const resultPollingInterval: NodeJS.Timeout = setInterval(async () => {
+      await this.pollResult();
+    }, 1000);
+    this.setState({ pollingInterval: resultPollingInterval });
+  }
+
+  stopResultPolling() {
+    if (this.state.pollingInterval) {
+      clearInterval(this.state.pollingInterval);
+    }
+  }
+
+  async pollResult() {
+    const data = await getResult(this.state.taskId);
+    if (data.result) {
+      this.setState({ results: data.result });
+    } else {
+      console.warn('failed to poll results for the task');
+    }
   }
 
   getTaskId(url: string): string {
@@ -50,12 +85,12 @@ export class Cards extends React.Component<{}, CardsState> {
   }
 
   resultFor(value: number) {
-    return this.state.results ? this.state.results.get(value) || 0 : 0;
+    return this.state.results ? this.state.results[value] || 0 : 0;
   }
 
   render() {
     return (
-      <div>
+      <div className="cards-container">
         {this.cardValues().map((cardValue: number) => (
           <div key={cardValue.toString()}>
             <Card
