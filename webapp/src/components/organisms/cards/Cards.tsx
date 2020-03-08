@@ -11,6 +11,7 @@ interface TaskResult {
 export interface CardsState {
   taskId: string;
   userId: string;
+  userVote: number | null;
   results: TaskResult;
   pollingInterval: NodeJS.Timeout | null;
 }
@@ -23,6 +24,7 @@ export class Cards extends React.Component<{}, CardsState> {
       results: {},
       taskId: this.getTaskId(window.location.href),
       userId: '',
+      userVote: null,
       pollingInterval: null,
     };
   }
@@ -77,11 +79,17 @@ export class Cards extends React.Component<{}, CardsState> {
     return [0, 0.5, 1, 2, 3, 5, 8, 13];
   }
 
-  async onCardSelect(
-    event: React.MouseEvent<HTMLButtonElement>,
-    value: number
-  ): Promise<void> {
-    const result = await vote(this.state.taskId, this.state.userId, value);
+  async onCardSelect(value: number): Promise<void> {
+    if (this.state.userVote === value) {
+      return;
+    }
+    this.setState({ userVote: value });
+
+    await vote(this.state.taskId, this.state.userId, value);
+  }
+
+  isSelectedCard(value: number): boolean {
+    return this.state.userVote === value;
   }
 
   resultFor(value: number) {
@@ -92,10 +100,11 @@ export class Cards extends React.Component<{}, CardsState> {
     return (
       <div className="cards-container">
         {this.cardValues().map((cardValue: number) => (
-          <div key={cardValue.toString()}>
+          <div className="card-container" key={cardValue.toString()}>
             <Card
               value={cardValue}
               onCardSelect={this.onCardSelect.bind(this)}
+              isSelected={this.isSelectedCard(cardValue)}
             />
             <CardResult count={this.resultFor(cardValue)} />
           </div>
