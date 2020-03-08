@@ -4,3 +4,10 @@ export class TaskNotFound extends Error {
     this.name = "TaskNotFound";
   }
 }
+
+export class UserNotFound extends Error {
+  constructor(message = "user does not exist") {
+    super(message);
+    this.name = "UserNotFound";
+  }
+}
