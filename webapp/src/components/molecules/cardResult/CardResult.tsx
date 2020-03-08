@@ -9,7 +9,7 @@ export class CardResult extends React.Component<CardResultProps, {}> {
   render() {
     const pluralizedVote = this.props.count > 1 ? 'votes' : 'vote';
     return (
-      <div>
+      <div className="card-result">
         {this.props.count} {pluralizedVote}
       </div>
     );

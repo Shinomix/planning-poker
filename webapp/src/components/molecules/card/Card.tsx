@@ -3,16 +3,27 @@ import './Card.css';
 
 export interface CardProps {
   value: number;
-  onCardSelect(e: React.MouseEvent<HTMLButtonElement>, value: number): void;
+  onCardSelect(value: number): void;
+  isSelected: boolean;
 }
 
 export class Card extends React.Component<CardProps, {}> {
   render() {
+    const getClassNames = (): string => {
+      let classes = 'card';
+      if (this.props.isSelected) {
+        classes += ' selected-card';
+      }
+      return classes;
+    };
+
     return (
-      <div>
-        <button onClick={e => this.props.onCardSelect(e, this.props.value)}>
-          {this.props.value}
-        </button>
+      <div
+        className={getClassNames()}
+        data-value={this.props.value}
+        onClick={e => this.props.onCardSelect(this.props.value)}
+      >
+        <div className="card-value">{this.props.value}</div>
       </div>
     );
   }
