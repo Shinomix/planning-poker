@@ -18,7 +18,7 @@ const initHTTPcontrollers = () => {
   server
     .post("/tasks", createTask)
     .post("/tasks/:id/vote", vote)
-    .post("/tasks/:id/users", createUser);
+    .post("/tasks/:id/user", createUser);
 };
 
 export { initHTTPcontrollers };
