@@ -26,11 +26,12 @@ const voteEndpoint = (req: any, res: any) => {
     const task = vote(value, userId, taskId);
 
     body = formatVote(task);
+    res.statusCode = 200;
   } catch (e) {
     body = formatError(e);
+    res.statusCode = 400;
   }
 
-  res.statusCode = 200;
   res.end(body);
 };
 
@@ -42,11 +43,12 @@ const createUserEndpoint = (req: any, res: any) => {
     const task = createUser(taskId);
 
     body = formatCreateUser(task);
+    res.statusCode = 200;
   } catch (e) {
     body = formatError(e);
+    res.statusCode = 400;
   }
 
-  res.statusCode = 200;
   res.end(body);
 };
 
