@@ -15,7 +15,7 @@ describe("'vote' use case", () => {
   let value: VoteValue;
 
   beforeEach(() => {
-    task = createTask({ id: "1" });
+    task = createTask({ id: taskId });
     value = 1;
 
     commitFn.mockClear();
