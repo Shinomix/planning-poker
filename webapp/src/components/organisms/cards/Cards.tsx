@@ -6,7 +6,6 @@ import { CardResult } from '../../molecules/cardResult/CardResult';
 
 import './Cards.css';
 
-
 export interface CardsState {
   taskId: string;
   userId: string;
@@ -20,12 +19,15 @@ export class Cards extends React.Component<{}, CardsState> {
     this.state = {
       results: new Map(),
       taskId: this.getTaskId(window.location.href),
-      userId: ''
+      userId: '',
     };
   }
 
   async componentDidMount() {
     const result = await createUser(this.state.taskId);
+    if (!result.user) {
+      window.location.href = '/';
+    }
 
     this.setState({ userId: result.user.id });
   }
@@ -33,7 +35,7 @@ export class Cards extends React.Component<{}, CardsState> {
   getTaskId(url: string): string {
     const urlPath: Array<string> = url.split('/');
 
-    return urlPath[urlPath.length - 1 ];
+    return urlPath[urlPath.length - 1];
   }
 
   cardValues(): Array<number> {

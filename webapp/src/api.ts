@@ -9,60 +9,63 @@ const createTask = async () => {
       body: '',
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
+        Accept: 'application/json',
+      },
     });
 
     return await rawResponse.json();
-  }
-  catch (e) {
+  } catch (e) {
     console.log('API - createTask - An error occured', e);
 
     return {};
   }
-}
+};
 
 const createUser = async (taskId: string) => {
   try {
-    const rawResponse = await fetch(TASKS_MANAGER_URL + `/tasks/${taskId}/user`, {
-      method: 'POST',
-      body: '',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+    const rawResponse = await fetch(
+      TASKS_MANAGER_URL + `/tasks/${taskId}/user`,
+      {
+        method: 'POST',
+        body: '',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       }
-    });
+    );
 
     return await rawResponse.json();
-  }
-  catch (e) {
+  } catch (e) {
     console.log('API - createUser - An error occured', e);
 
     return {};
   }
-}
+};
 
 const vote = async (taskId: string, userId: string, value: number) => {
   try {
-    const rawResponse = await fetch(TASKS_MANAGER_URL + `/tasks/${taskId}/vote`, {
-      method: 'POST',
-      body: JSON.stringify({
-        user_id: userId,
-        value
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+    const rawResponse = await fetch(
+      TASKS_MANAGER_URL + `/tasks/${taskId}/vote`,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          user_id: userId,
+          value,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
       }
-    });
+    );
 
     return await rawResponse.json();
-  }
-  catch (e) {
+  } catch (e) {
     console.log('API - createUser - An error occured', e);
 
     return {};
   }
-}
+};
 
-export { createTask, createUser, vote }
+export { createTask, createUser, vote };

@@ -4,7 +4,6 @@ import { createTask } from '../../../api';
 
 import './TaskCreator.css';
 
-
 export interface TaskCreatorState {
   taskId: string;
 }
@@ -18,7 +17,9 @@ export class TaskCreator extends React.Component<{}, TaskCreatorState> {
     };
   }
 
-  async onCreateTask(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
+  async onCreateTask(
+    event: React.MouseEvent<HTMLButtonElement>
+  ): Promise<void> {
     const task: any = await createTask();
 
     if (!!task) {
