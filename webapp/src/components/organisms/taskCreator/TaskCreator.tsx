@@ -1,6 +1,9 @@
 import React from 'react';
-import './TaskCreator.css';
 import { CreateTaskButton } from '../../molecules/createTaskButton/CreateTaskButton';
+import { createTask } from '../../../api';
+
+import './TaskCreator.css';
+
 
 export interface TaskCreatorState {
   taskId: string;
@@ -15,10 +18,14 @@ export class TaskCreator extends React.Component<{}, TaskCreatorState> {
     };
   }
 
-  onCreateTask(event: React.MouseEvent<HTMLButtonElement>): void {
-    console.log('on create task button click', event);
+  async onCreateTask(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
+    const task: any = await createTask();
 
-    this.setState({ taskId: 'toto' });
+    if (!!task) {
+      this.setState({ taskId: task.id });
+    } else {
+      console.warn('failed to create a task, try again');
+    }
   }
 
   isButtonDisabled(): boolean {
