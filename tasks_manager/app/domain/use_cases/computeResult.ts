@@ -2,8 +2,14 @@ import { Task } from "../aggregates/task";
 import { VoteValue } from "../entities/voteValue";
 import { Vote } from "../entities/vote";
 import { TaskResult } from "../entities/taskResult";
+import { TaskNotFound } from "./errors";
 
-const computeResult = (task: Task): TaskResult => {
+const computeResult = (taskId: string, find: Function): TaskResult => {
+  const task: Task | undefined = find(taskId);
+  if (!task) {
+    throw new TaskNotFound();
+  }
+
   const voteValues: Array<VoteValue> = task.votes.map(
     (vote: Vote) => vote.value
   );

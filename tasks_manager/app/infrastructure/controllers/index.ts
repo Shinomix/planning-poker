@@ -5,6 +5,7 @@ import { json } from "body-parser";
 
 import { createTask } from "./createTask";
 import { createUser } from "./createUser";
+import { computeResult } from "./computeResult";
 import { vote } from "./vote";
 
 const initHTTPcontrollers = () => {
@@ -20,7 +21,8 @@ const initHTTPcontrollers = () => {
   server
     .post("/tasks", createTask)
     .post("/tasks/:id/vote", vote)
-    .post("/tasks/:id/user", createUser);
+    .post("/tasks/:id/user", createUser)
+    .get("/tasks/:id/result", computeResult);
 };
 
 export { initHTTPcontrollers };
