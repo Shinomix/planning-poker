@@ -3,7 +3,9 @@ const polka = require("polka");
 import cors from "cors";
 import { json } from "body-parser";
 
-import { createTask, vote, createUser } from "./task";
+import { createTask } from "./createTask";
+import { createUser } from "./createUser";
+import { vote } from "./vote";
 
 const initHTTPcontrollers = () => {
   // polka has no official types
