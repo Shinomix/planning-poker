@@ -7,8 +7,8 @@ export interface TaskCreatorState {
 }
 
 export class TaskCreator extends React.Component<{}, TaskCreatorState> {
-  constructor() {
-    super({});
+  constructor(props: any) {
+    super(props);
 
     this.state = {
       taskId: '',
@@ -40,6 +40,7 @@ export class TaskCreator extends React.Component<{}, TaskCreatorState> {
             <a
               href={`http://localhost:4000/task/${this.state.taskId}`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               this link
             </a>{' '}
