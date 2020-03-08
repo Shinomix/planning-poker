@@ -1,6 +1,6 @@
-import React from 'react'
-import './TaskCreator.css'
-import { CreateTaskButton } from '../../molecules/createTaskButton/CreateTaskButton'
+import React from 'react';
+import './TaskCreator.css';
+import { CreateTaskButton } from '../../molecules/createTaskButton/CreateTaskButton';
 
 export interface TaskCreatorState {
   taskId: string;
@@ -11,7 +11,7 @@ export class TaskCreator extends React.Component<{}, TaskCreatorState> {
     super({});
 
     this.state = {
-      taskId: ''
+      taskId: '',
     };
   }
 
@@ -26,18 +26,27 @@ export class TaskCreator extends React.Component<{}, TaskCreatorState> {
   }
 
   render() {
-    return(
+    return (
       <div>
-        <CreateTaskButton onCreateTask={this.onCreateTask.bind(this)} isDisabled={this.isButtonDisabled()}/>
-        {
-          this.state.taskId !== ''
-          ? <div>
-            Your task has been created!<br/>
-            Share <a href={`http://localhost:4000/task/${this.state.taskId}`} target="_blank">this link</a> to your colleagues to vote
+        <CreateTaskButton
+          onCreateTask={this.onCreateTask.bind(this)}
+          isDisabled={this.isButtonDisabled()}
+        />
+        {this.state.taskId !== '' ? (
+          <div>
+            Your task has been created!
+            <br />
+            Share{' '}
+            <a
+              href={`http://localhost:4000/task/${this.state.taskId}`}
+              target="_blank"
+            >
+              this link
+            </a>{' '}
+            to your colleagues to vote
           </div>
-          : null
-        }
+        ) : null}
       </div>
-    )
+    );
   }
 }

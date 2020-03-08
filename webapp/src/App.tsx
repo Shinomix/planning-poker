@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import { Header } from './components/organisms/header/Header'
+import { Header } from './components/organisms/header/Header';
 import { TaskCreator } from './components/organisms/taskCreator/TaskCreator';
 import { Cards } from './components/organisms/cards/Cards';
 
 import './App.css';
-
 
 function App() {
   return (
